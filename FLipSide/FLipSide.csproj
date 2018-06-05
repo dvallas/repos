@@ -167,8 +167,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <None Include="Controllers\StoriesController.csOld" />
-    <Compile Include="Controllers\NewStoriesController.cs" />
     <Compile Include="Controllers\StoriesController.cs" />
+    <None Include="Controllers\StoriesController.cs.Old1" />
     <Compile Include="DAL\DA.cs" />
     <Compile Include="DAL\StoriesContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -237,11 +237,11 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Web.config" />
-    <None Include="Views\NewStories\Create.cshtml.old" />
-    <Content Include="Views\NewStories\Delete.cshtml" />
-    <Content Include="Views\NewStories\Details.cshtml" />
-    <Content Include="Views\NewStories\Edit.cshtml" />
-    <None Include="Views\NewStories\Index.cshtml" />
+    <None Include="Views\Stories\Create.cshtml.old" />
+    <Content Include="Views\Stories\Delete.cshtml" />
+    <Content Include="Views\Stories\Details.cshtml" />
+    <Content Include="Views\Stories\Edit.cshtml" />
+    <None Include="Views\Stories\Index.cshtml" />
     <Content Include="Views\Home.cshtml" />
     <None Include="Web.config.old" />
     <None Include="Web.config.Debug.old">
@@ -266,14 +266,14 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Stories\Delete.cshtml" />
-    <Content Include="Views\Stories\Details.cshtml" />
-    <Content Include="Views\Stories\Edit.cshtml" />
-    <Content Include="Views\Stories\Home.cshtml" />
-    <Content Include="Views\Stories\Index.cshtml" />
-    <Content Include="Views\Stories\newCreateStories.cshtml" />
-    <Content Include="Views\Stories\View.cshtml" />
-    <Content Include="Views\NewStories\Create.cshtml" />
+    <Content Include="Views\StoriesOld\Delete.cshtml" />
+    <Content Include="Views\StoriesOld\Details.cshtml" />
+    <Content Include="Views\StoriesOld\Edit.cshtml" />
+    <Content Include="Views\StoriesOld\Home.cshtml" />
+    <Content Include="Views\StoriesOld\Index.cshtml" />
+    <Content Include="Views\StoriesOld\newCreateStories.cshtml" />
+    <Content Include="Views\StoriesOld\View.cshtml" />
+    <Content Include="Views\Stories\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
