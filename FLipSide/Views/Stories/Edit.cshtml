@@ -1,0 +1,60 @@
+﻿@model FlipSideModels.Story
+
+@{
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Story</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="dateRan" class="control-label"></label>
+                <input asp-for="dateRan" class="form-control" />
+                <span asp-validation-for="dateRan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="slug" class="control-label"></label>
+                <input asp-for="slug" class="form-control" />
+                <span asp-validation-for="slug" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="summary" class="control-label"></label>
+                <input asp-for="summary" class="form-control" />
+                <span asp-validation-for="summary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="byline" class="control-label"></label>
+                <input asp-for="byline" class="form-control" />
+                <span asp-validation-for="byline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="lean" class="control-label"></label>
+                <input asp-for="lean" class="form-control" />
+                <span asp-validation-for="lean" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="link" class="control-label"></label>
+                <input asp-for="link" class="form-control" />
+                <span asp-validation-for="link" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

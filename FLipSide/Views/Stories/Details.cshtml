@@ -1,0 +1,55 @@
+﻿@model FlipSideModels.Story
+
+@{
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Story</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dateRan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.dateRan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.slug)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.slug)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.summary)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.summary)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.byline)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.byline)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.lean)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.lean)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.link)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.link)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

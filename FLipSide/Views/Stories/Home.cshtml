@@ -1,0 +1,107 @@
+﻿@model FlipSideModels.DisplayPage
+
+@{
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+    ViewData["Title"] = "Home";
+}
+
+<h2>The Flip Side</h2>
+<h3>@Html.DisplayNameFor(model => model.Headline)</h3>
+
+<p>
+    <a asp-action="Home">Today's Stories</a>
+</p>
+<table>
+    <tr>
+        <td>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Date Ran
+                        </th>
+                        <th>
+                            Slug
+                        </th>
+                        <th>
+                            Summary
+                        </th>
+                        <th>
+                            Byline
+                        </th>
+                        <th>
+                            Link
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.RightStory)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.dateRan)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.slug)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.summary)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.byline)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.link)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        Date Ran
+                    </th>
+                    <th>
+                        Slug
+                    </th>
+                    <th>
+                        Summary
+                    </th>
+                    <th>
+                        Byline
+                    </th>
+                    <th>
+                        Link
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.LeftStory)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dateRan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.slug)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.summary)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.byline)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.link)
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>

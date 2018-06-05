@@ -1,0 +1,294 @@
+﻿@model FlipSideModels.Story
+
+@{
+    ViewData["Title"] = "Create";
+
+}
+@*<script language="javascript">
+        var today = new Date().toJSON().slice(0, 10);
+        $("#dateRan").value(today);
+    </script>*@
+
+<h2>Create</h2>
+
+<h4>Story</h4>
+<hr />
+@*<form id="form1" asp-action="Create">*@
+@*</form>*@
+<table width="80%">
+    <tr>
+        <td colspan="3" align="center" style="padding:20px">
+            <div class="form-group">
+                @Html.LabelFor(model => model.topic, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.topic, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.topic, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table id="frm1" width="40%">
+                <tr>
+                <td style="vertical-align: top; padding: 10px; border: 3px solid blue">
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Story</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.dateran, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.dateran, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.dateran, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.slug, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.slug, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.slug, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.summary, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.summary, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.link, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.byline, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.byline, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.byline, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.lean, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.lean, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.lean, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.is_active, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.is_active, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.is_active, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.topic, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.topic, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.topic, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.shouldrun, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.shouldrun, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.shouldrun, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </table>
+        </td><td></td><td>
+            <table id="frm2">
+                <tr>
+                    <td style="vertical-align: top; padding: 10px; border: 3px solid red">
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>Story</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.dateran, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.dateran, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.dateran, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.slug, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.slug, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.slug, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.summary, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.summary, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.link, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.byline, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.byline, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.byline, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lean, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.lean, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.lean, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.is_active, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.is_active, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.is_active, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.topic, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.topic, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.topic, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.shouldrun, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.shouldrun, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.shouldrun, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+            </table>
+
+        </td>
+    </tr>
+</table>
+<div class="form-group">
+    <input type="image" alt="Create" onclick="formsubmitter()" class="btn btn-default" />
+</div>
+<script language="javascript">
+    var today = new Date().toJSON().slice(0, 10);
+    document.getElementsByName("dateran")[0].value = today;
+    document.getElementsByName("dateran")[1].value = today;
+
+    formsubmitter = function () {
+        var vals = new Array(9);
+        var vals1 = new Array(9);
+
+        var tds = $("input[name='dateran']");
+        vals[0] = tds[0].value;
+        vals1[0] = tds[1].value;
+
+        tds = $("input[name='slug']");
+        vals[1] = tds[0].value;
+        vals1[1] = tds[1].value;
+
+        tds = $("input[name='summary']");
+        vals[2] = tds[0].value;
+        vals1[2] = tds[1].value;
+
+        tds = $("input[name='link']");
+        vals[3] = tds[0].value;
+        vals1[3] = tds[1].value;
+
+        tds = $("input[name='byline']");
+        vals[4] = tds[0].value;
+        vals1[4] = tds[1].value;
+
+        tds = $("input[name='lean']");
+        vals[5] = tds[0].value;
+        vals1[5] = tds[1].value;
+        // tds = $("input[name='slug']");
+        //vals1[0] = tds[0].value;
+        //vals1[1] = tds[1].value;
+
+        tds = $("input[name='topic']");
+        vals[6] = tds[0].value;
+        vals1[6] = tds[0].value;
+
+        tds = $("input[name='shouldrun']");
+        vals[7] = tds[0].value;
+        vals1[7] = tds[0].value;
+
+        tds = $("input[name='id']");
+        vals[8] = tds[0].value;
+        vals1[8] = tds[0].value;
+
+        $.ajax(
+            {
+                url: "/stories/create",
+                type: "POST",
+                data: { 'vals': vals },
+                success: function (result) {
+                }
+            });
+
+        $.ajax(
+            {
+                url: "/stories/create",
+                type: "POST",
+                //contentType: "application/json",
+                data: { 'vals': vals1 },
+                success: function (result) {
+                    window.location = '/stories/create';
+                }
+            });
+
+
+    }
+
+    function wait(ms) {
+        var start = new Date().getTime();
+        var end = start;
+        while (end < start + ms) {
+            end = new Date().getTime();
+        }
+    }
+
+</script>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
