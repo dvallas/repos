@@ -7,6 +7,7 @@ namespace FlipSideModels
     {
         public int id { get; set; }
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime dateran { get; set; }
         public string slug { get; set; }
         public string summary { get; set; }
@@ -16,6 +17,7 @@ namespace FlipSideModels
         public int is_active { get; set; }
         public string topic { get; set; }
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime shouldrun { get; set; }
 
     }

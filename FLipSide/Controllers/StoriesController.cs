@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using FlipSideDataAccess;
 using FlipSideModels;
 using FLipSide.DAL;
 
@@ -19,15 +21,8 @@ namespace FLipSide.Controllers
         //GET: NewStories
         public async Task<ActionResult> Index()
         {
-            return View(await db.Stories.ToListAsync());
+            return View(await db.Story.ToListAsync());
         }
-
-        //public async Task<ActionResult> Index()
-        //{
-        //    var s = db.Stories.ToListAsync();
-        //    // return View(await _context.Story.ToListAsync());
-        //    return View(s);
-        //}
 
         // GET: NewStories/Details/5
         public async Task<ActionResult> Details(int? id)
@@ -36,7 +31,7 @@ namespace FLipSide.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Story story = await db.Stories.FindAsync(id);
+            Story story = await db.Story.FindAsync(id);
             if (story == null)
             {
                 return HttpNotFound();
@@ -47,24 +42,64 @@ namespace FLipSide.Controllers
         // GET: NewStories/Create
         public ActionResult Create()
         {
+            var dataFile = Server.MapPath("~/App_Logs/data.txt");
+            System.IO.File.WriteAllText(@dataFile, "entering Create");
+            Log.Info("entering Create with blank form");
             return View();
         }
 
-        // POST: NewStories/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,dateran,slug,summary,link,byline,lean,is_active,topic,shouldrun")] Story story)
+        private Story CreateStoryObject(IEnumerable<string> vals)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Stories.Add(story);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                var stry = new Story()
+                {
+                    dateran = DateTime.Parse(vals.ElementAt(0)),
+                    slug = vals.ElementAt(1),
+                    summary = vals.ElementAt(2),
+                    link = vals.ElementAt(3),
+                    byline = vals.ElementAt(4),
+                    lean = int.Parse(vals.ElementAt(5)),
+                    topic = vals.ElementAt(6),
+                    shouldrun = DateTime.Parse(vals.ElementAt(7)),
+                    is_active = int.Parse(vals.ElementAt(8))
+                };
+                return stry;
+            }
+            catch (Exception e)
+
+            {
+                Log.Info(e.Message + e.InnerException);
+                Console.WriteLine(e);
+                return new Story();
             }
 
-            return View(story);
+        }
+
+
+        // POST: Stories/Create
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(IEnumerable<string> vals)
+        {
+            Log.Info("Create action started... vals count: "+ vals.Count());
+            //System.IO.File.WriteAllText("aaTestLog.log", "coming from the Create Post method");
+            try
+            {
+                Log.Info("Story object created.  Sending to Write");
+                var stry = CreateStoryObject(vals);
+                Log.Info("Story object created.  Sending to Write");
+                var result = await new DA(new FlipSideNet.DAL.FlipSideDataContext()._Context).WriteStory(stry);
+                if (!ModelState.IsValid) return View(stry);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception e)
+            {
+                Log.Info(e.Message + e.InnerException);
+                Console.WriteLine(e);
+                return View();
+            }
+
         }
 
         // GET: NewStories/Edit/5
@@ -74,7 +109,7 @@ namespace FLipSide.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Story story = await db.Stories.FindAsync(id);
+            Story story = await db.Story.FindAsync(id);
             if (story == null)
             {
                 return HttpNotFound();
@@ -105,7 +140,7 @@ namespace FLipSide.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Story story = await db.Stories.FindAsync(id);
+            Story story = await db.Story.FindAsync(id);
             if (story == null)
             {
                 return HttpNotFound();
@@ -118,8 +153,8 @@ namespace FLipSide.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Story story = await db.Stories.FindAsync(id);
-            db.Stories.Remove(story);
+            Story story = await db.Story.FindAsync(id);
+            db.Story.Remove(story);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

@@ -20,14 +20,16 @@ namespace FlipSideDataAccess
     public class DA
     {
         public readonly FlipSideDataContext _context;
+        private DbContext _Context;
 
-        public DA()
-        {
-            
-            ;}
         public DA(FlipSideDataContext context)
         {
             this._context = context;
+        }
+
+        public DA(DbContext context)
+        {
+            _Context = context;
         }
 
 
@@ -48,16 +50,27 @@ namespace FlipSideDataAccess
 
         public async Task<int> WriteStory(Story story)
         {
-            var r = new Repository();
-            var sql = "INSERT INTO [dbo].[story]([dateRan], [slug], [summary], [byline], [lean], [link], [topic]) " +
-                        $" VALUES('{story.dateran}','{story.slug}','{story.summary}','{story.byline}','{story.lean}','{story.link}', '{story.topic}', '{story.shouldrun}','{story.id}' )";
-
-            Task<int> t=new Task<int>(() =>
+            try
             {
-                return r.Query<string>(sql) ;
-            });
-            t.Start();
-            return await t;
+                var r = new Repository();
+                var sql = "INSERT INTO flipside.Story (dateRan, slug, summary, byline, lean, link, topic, shouldrun, is_active) " +
+                            $" VALUES ('{story.dateran.Date:yyyy-MM-dd}','{story.slug}','{story.summary}','{story.byline}'," +
+                          $"'{story.lean.ToString()}','{story.link}', '{story.topic}', '{story.shouldrun.Date:yyyy-MM-dd}', '{story.is_active.ToString()}' )";
+
+                Log.Info("SQL: " + sql);
+                Task<int> t=new Task<int>(() =>
+                {
+                    return r.Query<string>(sql) ;
+                });
+                t.Start();
+                return await t;
+
+            }
+            catch (Exception e)
+            {
+                Log.Error("WriteStory failed: " + e.Message + e.InnerException);
+                return 0;
+            }
 
         }
 
@@ -111,9 +124,22 @@ namespace FlipSideDataAccess
 
         internal int Query<T>(string sql)
         {
-            var c = CreateConnection();
-            c.Database.ExecuteSqlCommand(sql);
-            return 1;
+            try
+            {
+                Log.Info("Starting query");
+                var c = CreateConnection();
+                var a = c.Database.ExecuteSqlCommand(sql);
+                Log.Info("query returned " + a.ToString());
+                return a;
+
+            }
+            catch (Exception e)
+            {
+                Log.Info(e.Message + e.InnerException);
+                Console.WriteLine(e);
+                return 0;
+            }
+
         }
     }
 
