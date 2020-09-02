@@ -1,18 +1,85 @@
-﻿@{
+﻿@model FlipSideModels.DisplayPage
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
     <h1>The Flip Side</h1>
-    <p class="lead">This is where our daily list of stories will appear.<p><a href="../home/About" class="btn btn-primary btn-lg">Learn more
-    </a></p>
+    <p class="lead">This is where our daily list of stories will appear.<p>
+        <a href="../home/About" class="btn btn-primary btn-lg">
+            Learn more
+        </a>
+    </p>
+    <table>
+        <tr>
+            <td>
+                <div id="left" style="position: absolute; margin-left: 60px;">
+                    <table class="table" id="LeftStory" style="background-color: lightblue; background-blend-mode: lighten; border-radius: 20px">
+
+                        @if (Model != null && Model.StoryPairs != null && Model.StoryPairs.Any())
+                        { 
+                            foreach (var item in Model.StoryPairs)
+                            {
+                                foreach (var story in item.LeftStory)
+                                {
+                                    <tr>
+                                        <th>
+                                            item.Headline
+                                            <p> @Html.DisplayFor(modelItem => story.topic)</p>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="@Html.DisplayFor(modelItem => story.link)">@Html.DisplayFor(modelItem => story.slug)</a>
+                                            <p>by@Html.DisplayFor(modelItem => story.byline) from@Html.DisplayFor(modelItem => story.dateran)</p>
+                                            <p>@Html.DisplayFor(modelItem => story.summary)</p>
+
+                                    </tr>
+                                }
+                            }
+                        }
+
+
+                    </table>
+                </div>
+            </td>
+            <td>
+                <div id="right" style="position: relative; margin-left: 60px;">
+                    <table class="table" id="RightStory" style="background-color: lightpink; background-blend-mode: lighten; border-radius: 20px;">
+                        @if (Model != null && Model.StoryPairs != null && Model.StoryPairs.Any())
+                        { 
+                            foreach (var item in Model.StoryPairs)
+                            {
+                                foreach (var story in item.RightStory)
+                                {
+                                    <tr>
+                                        <th>
+                                            item.Headline
+                                            <p> @Html.DisplayFor(modelItem => story.topic)</p>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <a href="@Html.DisplayFor(modelItem => story.link)">@Html.DisplayFor(modelItem => story.slug)</a>
+                                        <p>by@Html.DisplayFor(modelItem => story.byline) from@Html.DisplayFor(modelItem => story.dateran)</p>
+                                        <p>@Html.DisplayFor(modelItem => story.summary)</p>
+
+                                    </tr>
+                                }
+                            }
+                        }
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>
 
 <div class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>
-            The password-protected <a href="~/stories/index">Stories</a> area is where administrators go to enter stories and manage what's already there. 
+            The password-protected <a href="~/stories/index">Stories</a> area is where administrators go to enter stories and manage what's already there.
         </p>
         <p><a class="btn btn-default" href="http://theflipside.news/stories/index">Learn more &raquo;</a></p>
     </div>

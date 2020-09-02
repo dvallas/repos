@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
+using FlipSideModels;
 
 namespace FLipSide.DAL
 {
@@ -22,7 +23,7 @@ namespace FLipSide.DAL
 
         public System.Data.Entity.DbSet<FlipSideModels.Story> Story { get; set; }
 
-        public System.Data.Entity.DbSet<FlipSideModels.DisplayPage> DisplayPages { get; set; }
+        public DisplayPage DisplayPages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -172,6 +172,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Scripts.resx">
+      <DependentUpon>Scripts.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="movie.dot" />
     <None Include="Movies_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
@@ -181,6 +184,12 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Scripts.Designer.cs">
+      <DependentUpon>Scripts.cs</DependentUpon>
     </Compile>
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>

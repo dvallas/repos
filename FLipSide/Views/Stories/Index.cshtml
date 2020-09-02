@@ -1,4 +1,5 @@
-﻿@model IEnumerable<FlipSideModels.Story>
+﻿@using Microsoft.Ajax.Utilities
+@model List<FlipSideModels.Story>
 
 @{
     ViewBag.Title = "Index";
@@ -12,70 +13,79 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.dateran)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().source)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.slug)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().dateran)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.summary)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().slug)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.link)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().summary)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.byline)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().link)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.lean)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().byline)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.is_active)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().lean)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.topic)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().is_active)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.shouldrun)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().topic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().shouldrun)
         </th>
         <th></th>
     </tr>
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+         {
+             <tr>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.source)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.dateran)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.slug)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.summary)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.link)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.byline)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.lean)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.is_active)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.topic)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.shouldrun)
+                 </td>
+                 <td>
+                     @Html.ActionLink("Edit", "Edit", new {id = item.id}) |
+                     @Html.ActionLink("Details", "Details", new {id = item.id}) |
+                     @Html.ActionLink("Delete", "Delete", new {id = item.id})
+                 </td>
+             </tr>
+         }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.dateran)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.slug)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.summary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.link)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.byline)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lean)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.is_active)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.topic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.shouldrun)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
+    }
 </table>

@@ -21,7 +21,21 @@ namespace FLipSide.Controllers
         //GET: NewStories
         public async Task<ActionResult> Index()
         {
-            return View(await db.Story.ToListAsync());
+            var s = await db.Story.ToListAsync();
+
+            //return View(await db.Story.ToListAsync());
+            //var sp = new StoryPair
+            //{
+            //    LeftStory = await db.Story.ToListAsync(),
+            //    RightStory = await db.Story.ToListAsync()
+            //};
+            //var d = new DisplayPage {StoryPairs = new List<StoryPair>()};
+            //d.StoryPairs.ToList().Add(sp);
+
+            //return View(await db.DisplayPages.ToListAsync());
+            return View(s);
+
+
         }
 
         // GET: NewStories/Details/5
@@ -54,15 +68,16 @@ namespace FLipSide.Controllers
             {
                 var stry = new Story()
                 {
-                    dateran = DateTime.Parse(vals.ElementAt(0)),
-                    slug = vals.ElementAt(1),
-                    summary = vals.ElementAt(2),
-                    link = vals.ElementAt(3),
-                    byline = vals.ElementAt(4),
-                    lean = int.Parse(vals.ElementAt(5)),
-                    topic = vals.ElementAt(6),
-                    shouldrun = DateTime.Parse(vals.ElementAt(7)),
-                    is_active = int.Parse(vals.ElementAt(8))
+                    source = vals.ElementAt(0),
+                    dateran = DateTime.Parse(vals.ElementAt(1)),
+                    slug = vals.ElementAt(2),
+                    summary = vals.ElementAt(3),
+                    link = vals.ElementAt(4),
+                    byline = vals.ElementAt(5),
+                    lean = int.Parse(vals.ElementAt(6)),
+                    topic = vals.ElementAt(7),
+                    shouldrun = DateTime.Parse(vals.ElementAt(8)),
+                    is_active = int.Parse(vals.ElementAt(9))
                 };
                 return stry;
             }
@@ -122,7 +137,7 @@ namespace FLipSide.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,dateran,slug,summary,link,byline,lean,is_active,topic,shouldrun")] Story story)
+        public async Task<ActionResult> Edit([Bind(Include = "id,source,dateran,slug,summary,link,byline,lean,is_active,topic,shouldrun")] Story story)
         {
             if (ModelState.IsValid)
             {

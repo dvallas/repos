@@ -21,19 +21,20 @@ namespace FlipSideNet.DAL
             get { return new DbContext("FlipSideDataContext"); }
         }
 
-        public FlipSideDataContext() :  base("FlipSideDataContext")
+        public FlipSideDataContext() : base("FlipSideDataContext")
         {
         }
+
         public DbSet<TrendingTopic> TrendingTopics { get; set; }
         public DbSet<Story> Story { get; set; }
         public DbSet<Topics> Topics { get; set; }
         public DbSet<DisplayPage> DisplayPage { get; set; }
+        public DbSet<StoryPair> StoryPair { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<DisplayPage>().HasKey<StoryPair>(l => l.StoryPairs.FirstOrDefault());
         }
-        
-
     }
 }
